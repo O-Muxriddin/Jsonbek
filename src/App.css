@@ -22,7 +22,6 @@
   background: #ffffff;
   border-radius: 10px;
   border: 1px solid #e5e5e5;
-  transition: transform 0.2s ease;
 }
 
 .card-image {
@@ -69,14 +68,13 @@
 .loader-card {
   width: 240px;
   border: 1px solid #e5e5e5;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 14px;
   background: #fff;
 }
 
 .loader-img {
   height: 180px;
-  border-radius: 8px;
+  border-radius: 2px;
   margin-bottom: 12px;
 }
-
