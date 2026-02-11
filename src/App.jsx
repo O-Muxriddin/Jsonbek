@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-
+import { For, VStack, Box } from "@chakra-ui/react";
+import { LuBox } from "react-icons/lu";
 import {
   CardTitle,
   HStack,
   Skeleton,
   SkeletonCircle,
-  SkeletonText,
+  SkeletonText, 
   Stack,
 } from "@chakra-ui/react";
 import { Card, Image, Text } from "@chakra-ui/react";
@@ -18,7 +19,7 @@ export default function App() {
 
   useEffect(() => {
     setLoader(true);
-    setEror(false);
+
     fetch(`https://jsonbek.uz/api/products?style=${selekt}`)
       .then((res) => {
         return res.json();
@@ -37,9 +38,27 @@ export default function App() {
   function handleChange(evt) {
     setSelekt(evt.target.value);
   }
-  // if (eror) {
-  //   return;
-  // }
+  if (eror) {
+    return (
+      <Stack gap="4">
+        <For
+          each={[]}
+          fallback={
+            <VStack textAlign="center" fontWeight="medium">
+              <LuBox />
+              No items to show
+            </VStack>
+          }
+        >
+          {(item, index) => (
+            <Box h="10" key={index}>
+              {item}
+            </Box>
+          )}
+        </For>
+      </Stack>
+    );
+  }
 
   if (loader) {
     return (
@@ -67,7 +86,11 @@ export default function App() {
         {state.map((el) => (
           <div key={el.id} className="card-wrapper">
             <Card.Root maxW="sm" overflow="hidden" className="product-card">
-              <Image src={el.image} alt="Bu yerda rasm bor" className="card-image" />
+              <Image
+                src={el.image}
+                alt="Bu yerda rasm bor"
+                className="card-image"
+              />
 
               <Card.Body className="card-body">
                 <Card.Title className="card-title">{el.title}</Card.Title>
